@@ -32,7 +32,21 @@ function updateSubscriptionOnServer(subscription) {
   // TODO: Send subscription to application server
   const subscriptionJson = document.querySelector('.js-subscription-json');
   if (subscription) {
-    subscriptionJson.textContent = JSON.stringify(subscription);
+    var subDetails = JSON.stringify(subscription)
+    subscriptionJson.textContent = subDetails;
+
+
+    $.ajax({
+
+      type:'POST',
+      url:'/api/newUserSubs',
+      data:{'pushDetails':subDetails, "_token": "{{ csrf_token() }}"},
+      success:function(data){
+        subscriptionJson.textContent ='User successfully registered';
+      }
+    });
+
+
   } else {
   }
 }

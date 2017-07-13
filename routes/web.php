@@ -15,8 +15,13 @@ Route::get('/', function () {
     return view('welcome');
 });
 Route::get('/index', function(){
-    return view('subsPage');
+    return view('PushSubscribe');
 });
 Route::get('/notificationclick',function(){
     echo 'thank you for clicking';
 });
+
+Auth::routes();
+
+Route::get('/home', 'HomeController@index')->name('home');
+Route::get('abc','PushNotifController@test');
